@@ -6,7 +6,7 @@ This is a JavaFX based storefront component for creating a modern looking user p
 
 ---
 ### Inspiration 
-This component is inspired by a forum post in the german forum [java-forum.org](https://www.java-forum.org/thema/loesungsvorschlaege-fuer-dieses-coole-control.185844/). 
+This component is inspired by a forum post from the german forum [java-forum.org](https://www.java-forum.org/thema/loesungsvorschlaege-fuer-dieses-coole-control.185844/). 
 Furthermore the design for this component comes from [Profile Page Inspiration](https://medium.muz.li/profile-page-inspiration-2152f16bde07).
 
 ---
@@ -56,6 +56,33 @@ public class Main extends Application {
         </ProfileContentWrapper>
     </profileContent>
 </PrettyProfileComponent>
+```
+```Java
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception { 
+        final PrettyProfileComponent ppc = new PrettyProfileComponent();
+
+        HBox nav = new HBox();
+        nav.getChildren().addAll(new Label("some title"), new Button("Some action"));
+        ppc.setNav(nav);
+
+        ProfileContentWrapper wrapper = new ProfileContentWrapper();
+
+        VBox sidebar = new VBox();
+        sidebar.getChildren().addAll(new Label("Test"), new Button("Test"));
+        wrapper.setSidebar(sidebar);
+
+        StackPane content = new StackPane();
+        content.getChildren().add(new Label("Content"));
+        wrapper.setProfileContent(content);
+
+        ppc.setProfileContent(wrapper);
+
+        primaryStage.setScene(new Scene(ppc, 1024, 800));
+        primaryStage.show();
+    }
+}
 ```
 
 ---
